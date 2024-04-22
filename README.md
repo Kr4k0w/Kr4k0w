@@ -1,6 +1,6 @@
-### Hi there 👋
 
-![tryhackme stats](https://raw.githubusercontent.com/Kr4k0w/Kr4k0w/master/assets/thm_propic.png)
+<img src="https://tryhackme-badges.s3.amazonaws.com/Kr4k0w.png" alt="TryHackMe">
+
 
 <!--
 **Kr4k0w/Kr4k0w** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
