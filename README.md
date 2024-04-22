@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-![tryhackme stats](https://raw.githubusercontent.com/<SET_USERNAME_HERE>/<SET_USERNAME_HERE>/master/assets/thm_propic.png)
+![tryhackme stats](https://raw.githubusercontent.com/Kr4k0w/Kr4k0w/master/assets/thm_propic.png)
 
 <!--
 **Kr4k0w/Kr4k0w** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
