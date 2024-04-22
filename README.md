@@ -1,5 +1,5 @@
 
-<img src="https://tryhackme-badges.s3.amazonaws.com/Kr4k0w.png" alt="TryHackMe">
+<a href=https://tryhackme.com/p/Kr4k0w><img src="https://tryhackme-badges.s3.amazonaws.com/Kr4k0w.png" alt="TryHackMe">
 
 
 <!--
