@@ -1,4 +1,4 @@
-![](https://i.pinimg.com/originals/f1/ed/a4/f1eda4768df8d8135c779772f2833e88.gif)
+![](https://steamuserimages-a.akamaihd.net/ugc/581322996074878198/C6520680B9C4419BC9618CA859A5B9A42257B0E6/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
 
 <a href=https://tryhackme.com/p/Kr4k0w><img src="https://tryhackme-badges.s3.amazonaws.com/Kr4k0w.png" alt="TryHackMe">
 
