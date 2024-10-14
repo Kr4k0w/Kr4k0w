@@ -1,3 +1,4 @@
+![](https://i.pinimg.com/originals/f1/ed/a4/f1eda4768df8d8135c779772f2833e88.gif)
 
 <a href=https://tryhackme.com/p/Kr4k0w><img src="https://tryhackme-badges.s3.amazonaws.com/Kr4k0w.png" alt="TryHackMe">
 
