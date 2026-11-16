@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200">
+  <defs>
+    <style>
+      .t { font-family: 'Orbitron','Audiowide','Share Tech Mono','Courier New',monospace; font-weight: 900; }
+      .m { font-family: 'Share Tech Mono','VT323','Courier New',monospace; }
+      @keyframes blink  { 0%,49% {opacity:1} 50%,100% {opacity:.1} }
+      @keyframes blink2 { 0%,70% {opacity:1} 75%,80% {opacity:.2} 85%,100% {opacity:1} }
+      @keyframes glitch {
+        0%,88%,100% { transform: translate(0,0) }
+        90% { transform: translate(-5px,1px) }
+        92% { transform: translate(5px,-2px) }
+        94% { transform: translate(-3px,0) }
+        96% { transform: translate(2px,1px) }
+      }
+      @keyframes scan { 0% {transform: translateY(-10px)} 100% {transform: translateY(210px)} }
+      .b  { animation: blink 1s steps(1) infinite }
+      .b2 { animation: blink2 3s infinite }
+      .g1 { animation: glitch 3s infinite }
+      .g2 { animation: glitch 3s infinite reverse }
+      .scan { animation: scan 4s linear infinite }
+    </style>
+    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#000"/><stop offset=".5" stop-color="#03160f"/><stop offset="1" stop-color="#000"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="200" fill="url(#bg)"/>
+  <rect class="scan" width="900" height="6" fill="#00ff9c" opacity=".12"/>
+
+  <!-- canais de glitch (magenta e ciano) -->
+  <text class="t g1" x="450" y="92" font-size="56" text-anchor="middle" fill="#ff007f" opacity=".7">KR4K0W</text>
+  <text class="t g2" x="450" y="92" font-size="56" text-anchor="middle" fill="#00e5ff" opacity=".7">KR4K0W</text>
+  <!-- texto principal -->
+  <text class="t b2" x="450" y="92" font-size="56" text-anchor="middle" fill="#00ff9c" filter="url(#glow)">KR4K0W</text>
+
+  <text class="t b" x="450" y="128" font-size="18" text-anchor="middle" fill="#00e5ff" filter="url(#glow)" letter-spacing="6">// SECTION 9 · BLUE TEAM //</text>
+  <text class="m b2" x="450" y="158" font-size="14" text-anchor="middle" fill="#00ff9c" letter-spacing="2">ゴースト・イン・ザ・シェル │ SOC OPERATIONS │ INCIDENT RESPONSE │ DETECTION ENGINEERING</text>
+  <text class="m b" x="450" y="184" font-size="14" text-anchor="middle" fill="#ff007f">&gt; GHOST ONLINE_</text>
+</svg>
