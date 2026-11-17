@@ -3,8 +3,12 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=16&duration=2500&pause=600&color=00BFFF&background=00000000&center=true&vCenter=true&repeat=true&width=620&lines=%3E+SYNCING+GHOST...;%3E+MONITORING+THE+NET...;%3E+THREAT+DETECTED+%E2%80%94+INITIATING+RESPONSE;%3E+NO+ONE+SEES+THE+WHOLE+NETWORK" alt="typing" />
+  <img src="typing-crt.svg" alt="typing" width="620" />
 </p>
+
+<!--<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=16&duration=2500&pause=600&color=00BFFF&background=00000000&center=true&vCenter=true&repeat=true&width=620&lines=%3E+SYNCING+GHOST...;%3E+MONITORING+THE+NET...;%3E+THREAT+DETECTED+%E2%80%94+INITIATING+RESPONSE;%3E+NO+ONE+SEES+THE+WHOLE+NETWORK" alt="typing" />
+</p> -->
 
 ### 🇺🇸 English
 
