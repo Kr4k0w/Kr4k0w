@@ -1,174 +1,88 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="360" viewBox="0 0 1000 360">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="320" viewBox="0 0 1000 320">
   <defs>
     <style>
-      .t  { font-family: 'Orbitron','Rajdhani','Arial Black',sans-serif; font-weight: 900; }
-      .m  { font-family: 'Share Tech Mono','VT323','Courier New',monospace; }
-      .k  { font-family: 'Noto Serif JP','Yu Mincho','MS Mincho',serif; font-weight: 700; }
-      .rn { font-family: 'MS Gothic','Noto Sans JP',monospace; font-size: 16px; fill: #00ff41; }
-      @keyframes rain {
-        0%   { transform: translateY(-180px); opacity: 0 }
-        10%  { opacity: .4 }
-        90%  { opacity: .4 }
-        100% { transform: translateY(380px); opacity: 0 }
-      }
-      @keyframes blink { 0%,49% {opacity:1} 50%,100% {opacity:0} }
-      @keyframes flick { 0%,62%,72%,100% {opacity:1} 64% {opacity:.3} 67% {opacity:.85} 91% {opacity:.5} 94% {opacity:1} }
-      @keyframes crt   { 0%,100% {opacity:1} 8% {opacity:.95} 15% {opacity:1} 38% {opacity:.93} 44% {opacity:1} 71% {opacity:.96} 80% {opacity:1} }
-      @keyframes glitch {
-        0%,86%,100% { transform: translate(0,0) }
-        88% { transform: translate(-8px,1px) }
-        90% { transform: translate(7px,-2px) }
-        92% { transform: translate(-4px,0) }
-        95% { transform: translate(3px,1px) }
-      }
-      @keyframes roll { 0% {transform: translateY(-120px)} 100% {transform: translateY(380px)} }
-      .rain { animation: rain 7s linear infinite }
-      .b    { animation: blink 1s steps(1) infinite }
-      .f    { animation: flick 4s infinite }
-      .c    { animation: crt 3s infinite }
-      .g1   { animation: glitch 3s infinite }
-      .g2   { animation: glitch 3s infinite reverse }
-      .roll { animation: roll 6s linear infinite }
+      .m { font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; }
+      @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+      @keyframes pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
+      @keyframes scan { 0% { transform: translateY(-40px); } 100% { transform: translateY(340px); } }
+      .b { animation: blink 1.2s steps(1) infinite; }
+      .p { animation: pulse 4s ease-in-out infinite; }
+      .scan { animation: scan 8s linear infinite; }
     </style>
 
-    <!-- brilho de fósforo -->
-    <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="blueGlow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
 
-    <!-- ruído de tela (animado) -->
-    <filter id="noise" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="1" result="n">
-        <animate attributeName="seed" values="1;2;3;4;5;6" dur="0.5s" calcMode="discrete" repeatCount="indefinite"/>
-      </feTurbulence>
-      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 1  0 0 0 0 .25  0 0 0 .9 0"/>
-    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#090d13"/>
+    </linearGradient>
 
-    <!-- scanlines -->
-    <pattern id="lines" width="4" height="4" patternUnits="userSpaceOnUse">
-      <rect width="4" height="2" fill="#000" opacity=".45"/>
+    <linearGradient id="scanline" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </linearGradient>
+
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.8"/>
     </pattern>
 
-    <!-- fundo da tela, vinheta e reflexo do vidro -->
-    <radialGradient id="screen" cx="50%" cy="50%" r="75%">
-      <stop offset="0"  stop-color="#06260f"/>
-      <stop offset=".6" stop-color="#021208"/>
-      <stop offset="1"  stop-color="#000"/>
-    </radialGradient>
-    <radialGradient id="vig" cx="50%" cy="50%" r="72%">
-      <stop offset=".55" stop-color="#000" stop-opacity="0"/>
-      <stop offset="1"   stop-color="#000" stop-opacity=".85"/>
-    </radialGradient>
-    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#00ff41" stop-opacity="0"/>
-      <stop offset=".5" stop-color="#00ff41" stop-opacity=".12"/>
-      <stop offset="1" stop-color="#00ff41" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity=".10"/>
-      <stop offset=".35" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="bezel" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#2b2b2b"/><stop offset="1" stop-color="#0c0c0c"/>
-    </linearGradient>
-    <clipPath id="scr"><rect x="24" y="18" width="952" height="324" rx="38"/></clipPath>
+    <clipPath id="frame">
+      <rect x="12" y="12" width="976" height="296" rx="16"/>
+    </clipPath>
+  </defs>
 
-    <!-- glifos quadrados (40x60) -->
-    <path id="gK"  d="M4,0V60 M38,0L6,32 M14,24L38,60"/>
-    <path id="gR"  d="M4,60V0H28L36,8V22L28,30H4 M24,30L38,60"/>
-    <path id="g4"  d="M30,60V0L2,42H40"/>
-    <path id="g0"  d="M10,0H30L38,8V52L30,60H10L2,52V8Z"/>
-    <path id="gW"  d="M2,0L10,60H14L20,26L26,60H30L38,0"/>
-    <path id="gS"  d="M36,8L30,0H10L2,8V22L10,30H30L38,38V52L30,60H10L2,52"/>
-    <path id="gE"  d="M38,0H4V60H38 M4,30H30"/>
-    <path id="gC"  d="M38,8L30,0H10L2,8V52L10,60H30L38,52"/>
-    <path id="gP"  d="M4,60V0H28L36,8V24L28,32H4"/>
-    <path id="gUn" d="M0,60H40"/>
+  <g clip-path="url(#frame)">
+    <rect x="12" y="12" width="976" height="296" fill="url(#bg)"/>
+    <rect x="12" y="12" width="976" height="296" fill="url(#grid)" opacity="0.55"/>
 
-    <!-- KR4K0W -->
-    <g id="main" fill="none" stroke-linejoin="miter" stroke-linecap="butt">
-      <use xlink:href="#gK" transform="translate(210,76) scale(2)"/>
-      <use xlink:href="#gR" transform="translate(310,76) scale(2)"/>
-      <use xlink:href="#g4" transform="translate(410,76) scale(2)"/>
-      <use xlink:href="#gK" transform="translate(510,76) scale(2)"/>
-      <use xlink:href="#g0" transform="translate(610,76) scale(2)"/>
-      <use xlink:href="#gW" transform="translate(710,76) scale(2)"/>
+    <rect class="scan" x="12" y="0" width="976" height="45" fill="url(#scanline)"/>
+
+    <text class="m" x="500" y="46" font-size="11" text-anchor="middle" fill="#64748b" letter-spacing="4">// DEFENSIVE SECURITY &amp; THREAT MONITORING</text>
+
+    <g transform="translate(38,36)">
+      <circle class="p" cx="6" cy="6" r="4" fill="#38bdf8"/>
+      <text class="m" x="18" y="10" font-size="11" fill="#94a3b8" letter-spacing="2">BLUE TEAM :: ACTIVE</text>
+    </g>
+
+    <!-- ERICK A. -->
+    <g fill="none" stroke="#f8fafc" stroke-width="8.5" stroke-linejoin="miter" stroke-linecap="butt">
+      <path d="M38,0H4V60H38 M4,30H30" transform="translate(182,78) scale(1.75)"/>
+      <path d="M4,60V0H28L36,8V22L28,30H4 M24,30L38,60" transform="translate(268,78) scale(1.75)"/>
+      <path d="M8,0H32 M20,0V60 M8,60H32" transform="translate(354,78) scale(1.75)"/>
+      <path d="M38,8L30,0H10L2,8V52L10,60H30L38,52" transform="translate(440,78) scale(1.75)"/>
+      <path d="M4,0V60 M38,0L6,32 M14,24L38,60" transform="translate(526,78) scale(1.75)"/>
+      <path d="M4,60L16,0H24L36,60 M9,38H31" transform="translate(658,78) scale(1.75)"/>
+      <path d="M16,52H24V60H16Z" transform="translate(734,78) scale(1.75)"/>
     </g>
 
     <!-- SECOPS -->
-    <g id="sub" fill="none" stroke-linejoin="miter" stroke-linecap="butt">
-      <use xlink:href="#gS" transform="translate(296,226) scale(1.2)"/>
-      <use xlink:href="#gE" transform="translate(356,226) scale(1.2)"/>
-      <use xlink:href="#gC" transform="translate(416,226) scale(1.2)"/>
-      <use xlink:href="#g0" transform="translate(476,226) scale(1.2)"/>
-      <use xlink:href="#gP" transform="translate(536,226) scale(1.2)"/>
-      <use xlink:href="#gS" transform="translate(596,226) scale(1.2)"/>
+    <g filter="url(#blueGlow)" fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linejoin="miter" stroke-linecap="butt">
+      <path d="M36,8L30,0H10L2,8V22L10,30H30L38,38V52L30,60H10L2,52" transform="translate(330,208) scale(0.95)"/>
+      <path d="M38,0H4V60H38 M4,30H30" transform="translate(378,208) scale(0.95)"/>
+      <path d="M38,8L30,0H10L2,8V52L10,60H30L38,52" transform="translate(426,208) scale(0.95)"/>
+      <path d="M10,0H30L38,8V52L30,60H10L2,52V8Z" transform="translate(474,208) scale(0.95)"/>
+      <path d="M4,60V0H28L36,8V24L28,32H4" transform="translate(522,208) scale(0.95)"/>
+      <path d="M36,8L30,0H10L2,8V22L10,30H30L38,38V52L30,60H10L2,52" transform="translate(570,208) scale(0.95)"/>
     </g>
-  </defs>
-
-  <!-- carcaça do monitor -->
-  <rect width="1000" height="360" rx="50" fill="url(#bezel)"/>
-  <rect x="10" y="8" width="980" height="344" rx="44" fill="none" stroke="#000" stroke-width="4" opacity=".6"/>
-  <rect x="20" y="14" width="960" height="332" rx="42" fill="#000"/>
-  <circle cx="948" cy="352" r="3" fill="#00ff41" class="b" style="animation-duration:2s"/>
-
-  <!-- conteúdo da tela -->
-  <g clip-path="url(#scr)">
-    <rect x="24" y="18" width="952" height="324" fill="url(#screen)"/>
-
-    <g class="c">
-      <!-- chuva digital -->
-      <g class="rn">
-        <text class="rain" style="animation-delay:-1s;animation-duration:6s"   x="50">
-          <tspan x="50" dy="18">ｱ</tspan><tspan x="50" dy="18">7</tspan><tspan x="50" dy="18">ﾊ</tspan><tspan x="50" dy="18">ｶ</tspan><tspan x="50" dy="18">0</tspan><tspan x="50" dy="18">ﾐ</tspan><tspan x="50" dy="18">ｾ</tspan></text>
-        <text class="rain" style="animation-delay:-4s;animation-duration:8s"   x="160">
-          <tspan x="160" dy="18">ﾘ</tspan><tspan x="160" dy="18">2</tspan><tspan x="160" dy="18">ｷ</tspan><tspan x="160" dy="18">ﾇ</tspan><tspan x="160" dy="18">9</tspan><tspan x="160" dy="18">ｼ</tspan><tspan x="160" dy="18">ﾓ</tspan></text>
-        <text class="rain" style="animation-delay:-2s;animation-duration:7s"   x="300">
-          <tspan x="300" dy="18">ｳ</tspan><tspan x="300" dy="18">ﾒ</tspan><tspan x="300" dy="18">4</tspan><tspan x="300" dy="18">ｿ</tspan><tspan x="300" dy="18">ﾗ</tspan><tspan x="300" dy="18">1</tspan><tspan x="300" dy="18">ﾎ</tspan></text>
-        <text class="rain" style="animation-delay:-5s;animation-duration:9s"   x="470">
-          <tspan x="470" dy="18">ﾅ</tspan><tspan x="470" dy="18">5</tspan><tspan x="470" dy="18">ｴ</tspan><tspan x="470" dy="18">ﾔ</tspan><tspan x="470" dy="18">ﾕ</tspan><tspan x="470" dy="18">8</tspan><tspan x="470" dy="18">ｸ</tspan></text>
-        <text class="rain" style="animation-delay:-3s;animation-duration:6.5s" x="640">
-          <tspan x="640" dy="18">ﾃ</tspan><tspan x="640" dy="18">ｦ</tspan><tspan x="640" dy="18">3</tspan><tspan x="640" dy="18">ﾑ</tspan><tspan x="640" dy="18">ﾀ</tspan><tspan x="640" dy="18">6</tspan><tspan x="640" dy="18">ﾍ</tspan></text>
-        <text class="rain" style="animation-delay:-6s;animation-duration:8.5s" x="810">
-          <tspan x="810" dy="18">ｹ</tspan><tspan x="810" dy="18">ﾂ</tspan><tspan x="810" dy="18">0</tspan><tspan x="810" dy="18">ｺ</tspan><tspan x="810" dy="18">ﾆ</tspan><tspan x="810" dy="18">7</tspan><tspan x="810" dy="18">ﾛ</tspan></text>
-        <text class="rain" style="animation-delay:-0.5s;animation-duration:7.5s" x="930">
-          <tspan x="930" dy="18">ｲ</tspan><tspan x="930" dy="18">ﾏ</tspan><tspan x="930" dy="18">1</tspan><tspan x="930" dy="18">ﾈ</tspan><tspan x="930" dy="18">ｻ</tspan><tspan x="930" dy="18">4</tspan><tspan x="930" dy="18">ﾖ</tspan></text>
-      </g>
-
-      <!-- kanji -->
-      <text class="k f" x="500" y="58" font-size="28" text-anchor="middle" fill="#00ff41" letter-spacing="6" filter="url(#glow)">攻殻機動隊</text>
-
-      <!-- glitch + aberração -->
-      <g class="g1" opacity=".7"><use xlink:href="#main" stroke="#008f11" stroke-width="10"/></g>
-      <g class="g2" opacity=".7"><use xlink:href="#main" stroke="#d0ffd8" stroke-width="10"/></g>
-
-      <!-- KR4K0W -->
-      <g class="f" filter="url(#glow)">
-        <use xlink:href="#main" stroke="#00ff41" stroke-width="10"/>
-      </g>
-
-      <!-- SECOPS_ -->
-      <g class="f" filter="url(#glow)">
-        <use xlink:href="#sub" stroke="#00ff41" stroke-width="5.5"/>
-      </g>
-      <g class="b" filter="url(#glow)">
-        <use xlink:href="#gUn" transform="translate(656,226) scale(1.2)" fill="none" stroke="#00ff41" stroke-width="5.5"/>
-      </g>
-
-      <!-- rodapé -->
-      <text class="m" x="500" y="328" font-size="12" text-anchor="middle" fill="#008f11" letter-spacing="3">SOC OPERATIONS │ INCIDENT RESPONSE │ DETECTION ENGINEERING</text>
+    <g class="b" filter="url(#blueGlow)" fill="none" stroke="#38bdf8" stroke-width="4.5">
+      <path d="M0,60H40" transform="translate(618,208) scale(0.95)"/>
     </g>
 
-    <!-- efeitos de CRT por cima -->
-    <rect class="roll" x="24" width="952" height="120" fill="url(#bar)"/>
-    <rect x="24" y="18" width="952" height="324" filter="url(#noise)" opacity=".10"/>
-    <rect x="24" y="18" width="952" height="324" fill="url(#lines)"/>
-    <rect x="24" y="18" width="952" height="324" fill="url(#vig)"/>
-    <ellipse cx="260" cy="70" rx="300" ry="90" fill="url(#glass)"/>
+    <line x1="180" y1="282" x2="820" y2="282" stroke="#1e293b" stroke-width="1"/>
+    <text class="m" x="500" y="298" font-size="11.5" text-anchor="middle" fill="#94a3b8" letter-spacing="3">SOC OPERATIONS  •  INCIDENT RESPONSE  •  DETECTION ENGINEERING</text>
   </g>
 
-  <!-- borda interna da tela -->
-  <rect x="24" y="18" width="952" height="324" rx="38" fill="none" stroke="#00ff41" stroke-opacity=".18" stroke-width="2"/>
-  <rect x="24" y="18" width="952" height="324" rx="38" fill="none" stroke="#000" stroke-width="6" opacity=".7"/>
+  <rect x="12" y="12" width="976" height="296" rx="16" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+  <path d="M 12 42 L 12 28 Q 12 12 28 12 L 42 12" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <path d="M 988 42 L 988 28 Q 988 12 972 12 L 958 12" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <path d="M 12 278 L 12 292 Q 12 308 28 308 L 42 308" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <path d="M 988 278 L 988 292 Q 988 308 972 308 L 958 308" fill="none" stroke="#38bdf8" stroke-width="2"/>
 </svg>
